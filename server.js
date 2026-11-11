@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const db = require("./db"); // Database connection එක මෙතැනින් සම්බන්ධ වේ
 
 // Load environment variables
 dotenv.config();
