@@ -1,25 +1,18 @@
-const mysql = require("mysql2");
-const dotenv = require("dotenv");
+const mysql = require('mysql2');
 
-// Load .env variables
-dotenv.config();
-
-// Create the connection pool
-const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'ecommerce_db'
 });
 
-// Check the connection
-pool.getConnection((err, connection) => {
-  if (err) {
-    console.error("Database connection failed: ", err.message);
-  } else {
-    console.log("Connected to the MySQL database successfully!");
-    connection.release();
-  }
+db.connect((err) => {
+    if (err) {
+        console.error('Database connection failed:', err.message);
+    } else {
+        console.log('Connected to MariaDB/MySQL Database!');
+    }
 });
 
-module.exports = pool.promise();
+module.exports = db;
